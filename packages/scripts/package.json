@@ -1,0 +1,22 @@
+{
+  "name": "@irie/scripts",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "seed": "tsx src/seed.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo \"(scripts) no lint\"",
+    "clean": "rm -rf .turbo node_modules"
+  },
+  "dependencies": {
+    "@irie/api": "workspace:*",
+    "@irie/types": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "dotenv": "^16.4.7",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "IrieEvents",
+    "slug": "irieevents",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "irieevents",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.irieevents.app",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "IrieEvents uses your location to show events happening near you."
+      }
+    },
+    "android": {
+      "package": "com.irieevents.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#009B3A",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"],
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "IrieEvents uses your location to show events happening near you."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
