@@ -6,6 +6,7 @@
   "scripts": {
     "seed": "tsx src/seed.ts",
     "import:visitjamaica": "tsx src/import-visitjamaica.ts",
+    "scrape:visitjamaica": "tsx src/scrape-visitjamaica.ts",
     "typecheck": "tsc --noEmit",
     "lint": "echo \"(scripts) no lint\"",
     "clean": "rm -rf .turbo node_modules"
