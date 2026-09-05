@@ -5,7 +5,7 @@
   "description": "Lynkkii — Jamaica events discovery (mobile + web) monorepo",
   "packageManager": "pnpm@9.15.4",
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "scripts": {
     "build": "turbo run build",
