@@ -5,7 +5,7 @@ import {
   type EventType,
   type Parish,
   type PriceFilter,
-} from '@irie/types';
+} from '@lynkkii/types';
 
 export type RawSearchParams = Record<string, string | string[] | undefined>;
 

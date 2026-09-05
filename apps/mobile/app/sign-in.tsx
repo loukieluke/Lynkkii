@@ -59,7 +59,7 @@ export default function SignInScreen() {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <View style={styles.card}>
-        <Text style={styles.title}>Sign in to IrieEvents</Text>
+        <Text style={styles.title}>Sign in to Lynkkii</Text>
         <Text style={styles.subtitle}>
           {step === 'email'
             ? 'We’ll email you a 6-digit code — no password needed.'

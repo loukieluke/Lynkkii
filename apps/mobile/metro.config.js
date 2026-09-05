@@ -1,5 +1,5 @@
-// Metro config for the IrieEvents monorepo.
-// Watches the workspace root so Metro can resolve the shared @irie/* packages,
+// Metro config for the Lynkkii monorepo.
+// Watches the workspace root so Metro can resolve the shared @lynkkii/* packages,
 // and looks up modules from both the app and the hoisted root node_modules.
 const { getDefaultConfig } = require('expo/metro-config');
 const path = require('path');

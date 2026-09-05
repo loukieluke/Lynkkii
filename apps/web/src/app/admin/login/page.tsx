@@ -17,7 +17,7 @@ export default async function AdminLogin({
       <form className="form form--narrow" action={loginAction}>
         <h1 style={{ margin: 0, fontSize: 22 }}>Admin sign in</h1>
         <p className="field__hint" style={{ marginTop: -8 }}>
-          Curation tool for the IrieEvents catalog.
+          Curation tool for the Lynkkii catalog.
         </p>
         {!adminConfigured() ? (
           <div className="alert alert--error">

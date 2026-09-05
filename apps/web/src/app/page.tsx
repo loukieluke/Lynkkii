@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { searchEvents } from '@irie/api';
-import type { FeedEvent } from '@irie/types';
+import { searchEvents } from '@lynkkii/api';
+import type { FeedEvent } from '@lynkkii/types';
 import { EventCard } from '@/components/EventCard';
 import { SearchBox } from '@/components/SearchBox';
 import { FilterBar } from '@/components/FilterBar';

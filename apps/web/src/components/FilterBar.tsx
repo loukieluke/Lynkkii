@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { EVENT_TYPES, EVENT_TYPE_LABELS, PARISHES } from '@irie/types';
+import { EVENT_TYPES, EVENT_TYPE_LABELS, PARISHES } from '@lynkkii/types';
 import { useTransition } from 'react';
 
 const NEAR_RADIUS_KM = '25';

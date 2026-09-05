@@ -41,3 +41,5 @@ coverage/
 !debug.keystore
 ios/Pods/
 android/.gradle/
+.vercel
+.env*

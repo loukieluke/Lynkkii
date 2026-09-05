@@ -11,16 +11,16 @@ import {
 } from 'react-native';
 import { Image } from 'expo-image';
 import * as WebBrowser from 'expo-web-browser';
-import MapView, { Marker } from 'react-native-maps';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
-import { getEventBySlug, formatEventDate, formatEventTime, priceBadge, eventWebUrl } from '@irie/api';
-import { EVENT_TYPE_LABELS, type FeedEvent } from '@irie/types';
+import { getEventBySlug, formatEventDate, formatEventTime, priceBadge, eventWebUrl } from '@lynkkii/api';
+import { EVENT_TYPE_LABELS, type FeedEvent } from '@lynkkii/types';
+import { EventMap } from '@/components/EventMap';
 import { isConfigured, supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth';
 import { useFavorites } from '@/lib/favorites';
 import { colors, radius, spacing } from '@/lib/theme';
 
-const SITE_URL = process.env.EXPO_PUBLIC_SITE_URL ?? 'https://irieevents.app';
+const SITE_URL = process.env.EXPO_PUBLIC_SITE_URL ?? 'https://lynkkii.app';
 
 export default function EventDetailScreen() {
   const { slug } = useLocalSearchParams<{ slug: string }>();
@@ -135,18 +135,7 @@ export default function EventDetailScreen() {
 
         {hasGeo ? (
           <View style={styles.map}>
-            <MapView
-              style={StyleSheet.absoluteFill}
-              pointerEvents="none"
-              initialRegion={{
-                latitude: v!.lat!,
-                longitude: v!.lng!,
-                latitudeDelta: 0.02,
-                longitudeDelta: 0.02,
-              }}
-            >
-              <Marker coordinate={{ latitude: v!.lat!, longitude: v!.lng! }} pinColor={colors.green} />
-            </MapView>
+            <EventMap latitude={v!.lat!} longitude={v!.lng!} />
           </View>
         ) : null}
 

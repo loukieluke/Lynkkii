@@ -1,8 +1,8 @@
 {
-  "name": "irie-events",
+  "name": "lynkkii",
   "version": "0.1.0",
   "private": true,
-  "description": "IrieEvents — Jamaica events discovery (mobile + web) monorepo",
+  "description": "Lynkkii — Jamaica events discovery (mobile + web) monorepo",
   "packageManager": "pnpm@9.15.4",
   "engines": {
     "node": ">=20"
@@ -13,16 +13,22 @@
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "clean": "turbo run clean && rm -rf node_modules",
-    "web": "pnpm --filter @irie/web dev",
-    "mobile": "pnpm --filter @irie/mobile start",
+    "web": "pnpm --filter @lynkkii/web dev",
+    "mobile": "pnpm --filter @lynkkii/mobile start",
     "db:types": "supabase gen types typescript --local > packages/types/src/database.ts",
     "db:reset": "supabase db reset",
     "db:start": "supabase start",
-    "db:seed": "pnpm --filter @irie/scripts seed"
+    "db:seed": "pnpm --filter @lynkkii/scripts seed"
   },
   "devDependencies": {
     "prettier": "^3.4.2",
     "turbo": "^2.4.4",
     "typescript": "^5.7.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "react": "19.2.3",
+      "react-dom": "19.2.3"
+    }
   }
 }

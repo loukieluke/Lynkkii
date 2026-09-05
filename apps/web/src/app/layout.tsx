@@ -3,11 +3,11 @@ import Link from 'next/link';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'IrieEvents — What’s happening in Jamaica',
+  title: 'Lynkkii — What’s happening in Jamaica',
   description:
     'Discover upcoming concerts, festivals, sports, arts, family, and nightlife events across Jamaica. Curated, accurate, and always up to date.',
   openGraph: {
-    title: 'IrieEvents',
+    title: 'Lynkkii',
     description: 'Discover upcoming events across Jamaica.',
     type: 'website',
   },
@@ -25,10 +25,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <header className="site-header">
           <div className="container site-header__row">
-            <Link href="/" className="brand" aria-label="IrieEvents home">
+            <Link href="/" className="brand" aria-label="Lynkkii home">
               <span className="brand__dot" aria-hidden />
               <span>
-                Irie<em>Events</em>
+                Lynk<em>kii</em>
               </span>
             </Link>
             <nav className="nav">
@@ -43,7 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <footer className="site-footer">
           <div className="container">
-            IrieEvents · Curated Jamaican events · Times shown in Jamaica time
+            Lynkkii · Curated Jamaican events · Times shown in Jamaica time
             (America/Jamaica).
           </div>
         </footer>

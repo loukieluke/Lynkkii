@@ -1,5 +1,5 @@
-import { searchEvents } from '@irie/api';
-import type { FeedEvent } from '@irie/types';
+import { searchEvents } from '@lynkkii/api';
+import type { FeedEvent } from '@lynkkii/types';
 import { MapView } from '@/components/MapView';
 import { getReadClient } from '@/lib/supabase';
 

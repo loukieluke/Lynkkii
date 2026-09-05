@@ -1,5 +1,5 @@
 {
-  "name": "@irie/web",
+  "name": "@lynkkii/web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,13 +11,13 @@
     "clean": "rm -rf .next .turbo node_modules"
   },
   "dependencies": {
-    "@irie/api": "workspace:*",
-    "@irie/types": "workspace:*",
+    "@lynkkii/api": "workspace:*",
+    "@lynkkii/types": "workspace:*",
     "@supabase/supabase-js": "^2.48.1",
     "leaflet": "^1.9.4",
     "next": "^15.1.7",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.16",

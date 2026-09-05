@@ -1,7 +1,7 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
-import type { Database } from '@irie/types';
+import type { Database } from '@lynkkii/types';
 
-export type IrieClient = SupabaseClient<Database>;
+export type LynkkiiClient = SupabaseClient<Database>;
 
 export interface ClientConfig {
   url: string;
@@ -12,7 +12,7 @@ export interface ClientConfig {
  * Public / anon client used by the app + website to READ the canonical store.
  * Respects RLS (public read on events/venues, owner-only favorites).
  */
-export function createIrieClient(config: ClientConfig): IrieClient {
+export function createLynkkiiClient(config: ClientConfig): LynkkiiClient {
   return createClient<Database>(config.url, config.anonKey, {
     auth: {
       persistSession: true,
@@ -26,7 +26,7 @@ export function createIrieClient(config: ClientConfig): IrieClient {
  * worker. BYPASSES RLS — server-side only. NEVER expose the service key to a
  * client bundle.
  */
-export function createServiceClient(url: string, serviceRoleKey: string): IrieClient {
+export function createServiceClient(url: string, serviceRoleKey: string): LynkkiiClient {
   return createClient<Database>(url, serviceRoleKey, {
     auth: { persistSession: false, autoRefreshToken: false },
   });

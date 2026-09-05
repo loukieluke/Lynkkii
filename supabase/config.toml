@@ -1,7 +1,7 @@
 # Supabase local dev config. `supabase start` boots Postgres+PostGIS, Auth,
 # Storage, and the Edge runtime locally. Run `supabase db reset` to apply
 # everything in supabase/migrations and supabase/seed.sql.
-project_id = "irie-events"
+project_id = "lynkkii"
 
 [api]
 enabled = true
@@ -26,7 +26,7 @@ file_size_limit = "20MiB"
 [auth]
 enabled = true
 site_url = "http://localhost:3000"
-additional_redirect_urls = ["http://localhost:3000", "irieevents://"]
+additional_redirect_urls = ["http://localhost:3000", "lynkkii://"]
 jwt_expiry = 3600
 enable_signup = true
 

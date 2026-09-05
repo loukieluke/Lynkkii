@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { formatEventDateTime, priceBadge } from '@irie/api';
-import { EVENT_TYPE_LABELS, type FeedEvent } from '@irie/types';
+import { formatEventDateTime, priceBadge } from '@lynkkii/api';
+import { EVENT_TYPE_LABELS, type FeedEvent } from '@lynkkii/types';
 
 export function EventCard({ event }: { event: FeedEvent }) {
   const href = `/event/${event.slug ?? event.id}`;

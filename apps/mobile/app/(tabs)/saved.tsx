@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
 import { ActivityIndicator, FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useFocusEffect, useRouter } from 'expo-router';
-import { listFavoriteEvents } from '@irie/api';
-import type { FeedEvent } from '@irie/types';
+import { listFavoriteEvents } from '@lynkkii/api';
+import type { FeedEvent } from '@lynkkii/types';
 import { EventCard } from '@/components/EventCard';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth';

@@ -1,4 +1,4 @@
-import { createIrieClient, createServiceClient, type IrieClient } from '@irie/api';
+import { createLynkkiiClient, createServiceClient, type LynkkiiClient } from '@lynkkii/api';
 import {
   SUPABASE_ANON_KEY,
   SUPABASE_SERVICE_ROLE_KEY,
@@ -11,16 +11,16 @@ import {
  * Safe to use in Server Components. Returns null if env is unconfigured so the
  * UI can render a friendly "connect Supabase" state instead of crashing.
  */
-export function getReadClient(): IrieClient | null {
+export function getReadClient(): LynkkiiClient | null {
   if (!isSupabaseConfigured) return null;
-  return createIrieClient({ url: SUPABASE_URL, anonKey: SUPABASE_ANON_KEY });
+  return createLynkkiiClient({ url: SUPABASE_URL, anonKey: SUPABASE_ANON_KEY });
 }
 
 /**
  * Service-role client for the admin curation tool. BYPASSES RLS.
  * SERVER-ONLY — never import from a client component or leak the key.
  */
-export function getServiceClient(): IrieClient | null {
+export function getServiceClient(): LynkkiiClient | null {
   if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) return null;
   return createServiceClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 }

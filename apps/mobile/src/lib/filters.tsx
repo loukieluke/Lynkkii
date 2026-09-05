@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import type { EventFilters } from '@irie/types';
+import type { EventFilters } from '@lynkkii/types';
 
-const STORAGE_KEY = 'irie:filters:v1';
+const STORAGE_KEY = 'lynkkii:filters:v1';
 
 type FiltersContextValue = {
   filters: EventFilters;

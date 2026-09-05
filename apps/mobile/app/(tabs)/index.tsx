@@ -10,8 +10,8 @@ import {
   View,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import { searchEvents } from '@irie/api';
-import type { FeedEvent } from '@irie/types';
+import { searchEvents } from '@lynkkii/api';
+import type { FeedEvent } from '@lynkkii/types';
 import { EventCard } from '@/components/EventCard';
 import { isConfigured, supabase } from '@/lib/supabase';
 import { useFilters } from '@/lib/filters';

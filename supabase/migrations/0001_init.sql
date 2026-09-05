@@ -1,5 +1,5 @@
 -- =============================================================================
--- IrieEvents — Phase 0 schema (CONTRACT).
+-- Lynkkii — Phase 0 schema (CONTRACT).
 -- This is the exact data model from the project brief (Section 4).
 -- Every other component depends on this. Do not deviate without approval.
 -- =============================================================================

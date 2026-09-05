@@ -1,4 +1,4 @@
-import { EVENT_TYPES, EVENT_TYPE_LABELS, SOURCE_TYPES, JAMAICA_TZ } from '@irie/types';
+import { EVENT_TYPES, EVENT_TYPE_LABELS, SOURCE_TYPES, JAMAICA_TZ } from '@lynkkii/types';
 import { saveEventAction } from '@/app/admin/actions';
 
 export type EventEditData = {

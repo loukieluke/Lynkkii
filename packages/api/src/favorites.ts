@@ -1,15 +1,15 @@
-import type { FeedEvent } from '@irie/types';
-import type { IrieClient } from './client';
+import type { FeedEvent } from '@lynkkii/types';
+import type { LynkkiiClient } from './client';
 
 /** IDs of the current user's favorited events. Requires an authenticated session. */
-export async function listFavoriteIds(client: IrieClient): Promise<string[]> {
+export async function listFavoriteIds(client: LynkkiiClient): Promise<string[]> {
   const { data, error } = await client.from('favorites').select('event_id');
   if (error) throw new Error(`listFavoriteIds failed: ${error.message}`);
   return (data ?? []).map((r) => r.event_id);
 }
 
 /** Full favorited events (joined). Requires an authenticated session. */
-export async function listFavoriteEvents(client: IrieClient): Promise<FeedEvent[]> {
+export async function listFavoriteEvents(client: LynkkiiClient): Promise<FeedEvent[]> {
   const { data, error } = await client
     .from('favorites')
     .select(
@@ -27,7 +27,7 @@ export async function listFavoriteEvents(client: IrieClient): Promise<FeedEvent[
     .filter((e): e is FeedEvent => e !== null);
 }
 
-export async function addFavorite(client: IrieClient, eventId: string): Promise<void> {
+export async function addFavorite(client: LynkkiiClient, eventId: string): Promise<void> {
   const { data: userData } = await client.auth.getUser();
   const userId = userData.user?.id;
   if (!userId) throw new Error('Must be signed in to save events');
@@ -37,7 +37,7 @@ export async function addFavorite(client: IrieClient, eventId: string): Promise<
   if (error) throw new Error(`addFavorite failed: ${error.message}`);
 }
 
-export async function removeFavorite(client: IrieClient, eventId: string): Promise<void> {
+export async function removeFavorite(client: LynkkiiClient, eventId: string): Promise<void> {
   const { data: userData } = await client.auth.getUser();
   const userId = userData.user?.id;
   if (!userId) throw new Error('Must be signed in to manage saved events');

@@ -1,4 +1,4 @@
-import { PARISHES } from '@irie/types';
+import { PARISHES } from '@lynkkii/types';
 import { getServiceClient } from '@/lib/supabase';
 import { saveVenueAction } from '../../actions';
 

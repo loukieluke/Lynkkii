@@ -5,10 +5,10 @@ import { ADMIN_PASSWORD } from './env';
 // Lightweight shared-password gate for the v1 admin (brief: solo build, managed
 // simplicity). Real per-user roles arrive with the Phase 4 partner portal.
 
-const COOKIE = 'irie_admin';
+const COOKIE = 'lynkkii_admin';
 
 function token(): string {
-  return createHash('sha256').update(`irie:${ADMIN_PASSWORD}`).digest('hex');
+  return createHash('sha256').update(`lynkkii:${ADMIN_PASSWORD}`).digest('hex');
 }
 
 export function adminConfigured(): boolean {

@@ -2,8 +2,8 @@
 
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef } from 'react';
-import type { FeedEvent } from '@irie/types';
-import { formatEventDate, priceBadge } from '@irie/api';
+import type { FeedEvent } from '@lynkkii/types';
+import { formatEventDate, priceBadge } from '@lynkkii/api';
 
 // Kingston-ish default center; fit to markers when we have them.
 const JAMAICA_CENTER: [number, number] = [18.05, -77.3];
@@ -26,7 +26,7 @@ export function MapView({ events }: { events: FeedEvent[] }) {
       }).addTo(map);
 
       const icon = L.divIcon({
-        className: 'irie-pin',
+        className: 'lynkkii-pin',
         html: '<div style="width:18px;height:18px;border-radius:50%;background:#009b3a;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4)"></div>',
         iconSize: [18, 18],
         iconAnchor: [9, 9],

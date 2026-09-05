@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { formatEventDateTime } from '@irie/api';
+import { formatEventDateTime } from '@lynkkii/api';
 import { getServiceClient } from '@/lib/supabase';
 import { deleteEventAction, togglePublishAction } from '../actions';
 

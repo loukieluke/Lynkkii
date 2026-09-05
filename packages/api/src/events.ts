@@ -1,5 +1,5 @@
-import type { EventFilters, FeedEvent } from '@irie/types';
-import type { IrieClient } from './client';
+import type { EventFilters, FeedEvent } from '@lynkkii/types';
+import type { LynkkiiClient } from './client';
 
 // Map the public EventFilters shape to the search_events RPC arguments.
 export function filtersToRpcArgs(filters: EventFilters = {}) {
@@ -23,7 +23,7 @@ export function filtersToRpcArgs(filters: EventFilters = {}) {
  * start_time asc. Returns the feed contract shape.
  */
 export async function searchEvents(
-  client: IrieClient,
+  client: LynkkiiClient,
   filters: EventFilters = {},
 ): Promise<FeedEvent[]> {
   const { data, error } = await client.rpc('search_events', filtersToRpcArgs(filters));
@@ -33,7 +33,7 @@ export async function searchEvents(
 
 /** Fetch a single upcoming event by slug (for detail pages / deep links). */
 export async function getEventBySlug(
-  client: IrieClient,
+  client: LynkkiiClient,
   slug: string,
 ): Promise<FeedEvent | null> {
   // Reuse the canonical shape via search then match slug (keeps one source of
@@ -48,7 +48,7 @@ export async function getEventBySlug(
 
 /** Fetch a single event by id from the base table (works for past events too). */
 export async function getEventById(
-  client: IrieClient,
+  client: LynkkiiClient,
   id: string,
 ): Promise<FeedEvent | null> {
   const { data, error } = await client

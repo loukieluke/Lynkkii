@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
-import type { EventType, Parish, PriceType, SourceType } from '@irie/types';
+import type { EventType, Parish, PriceType, SourceType } from '@lynkkii/types';
 import { getServiceClient } from '@/lib/supabase';
 import { checkPassword, signIn, signOut, isAuthed } from '@/lib/auth';
 

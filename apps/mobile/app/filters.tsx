@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import * as Location from 'expo-location';
 import { useRouter } from 'expo-router';
-import { EVENT_TYPES, EVENT_TYPE_LABELS, PARISHES, type EventType, type Parish, type PriceFilter } from '@irie/types';
+import { EVENT_TYPES, EVENT_TYPE_LABELS, PARISHES, type EventType, type Parish, type PriceFilter } from '@lynkkii/types';
 import { useFilters } from '@/lib/filters';
 import { colors, radius, spacing } from '@/lib/theme';
 

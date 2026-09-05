@@ -1,8 +1,8 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { Image } from 'expo-image';
 import { Link } from 'expo-router';
-import { formatEventDateTime, priceBadge } from '@irie/api';
-import { EVENT_TYPE_LABELS, type FeedEvent } from '@irie/types';
+import { formatEventDateTime, priceBadge } from '@lynkkii/api';
+import { EVENT_TYPE_LABELS, type FeedEvent } from '@lynkkii/types';
 import { colors, radius, spacing } from '@/lib/theme';
 
 export function EventCard({ event }: { event: FeedEvent }) {

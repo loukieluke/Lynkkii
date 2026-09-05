@@ -1,5 +1,5 @@
 {
-  "name": "@irie/api",
+  "name": "@lynkkii/api",
   "version": "0.0.0",
   "private": true,
   "main": "./src/index.ts",
@@ -13,7 +13,7 @@
     "clean": "rm -rf dist .turbo node_modules"
   },
   "dependencies": {
-    "@irie/types": "workspace:*",
+    "@lynkkii/types": "workspace:*",
     "@supabase/supabase-js": "^2.48.1"
   },
   "devDependencies": {

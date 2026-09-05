@@ -1,4 +1,4 @@
-import { JAMAICA_TZ, type FeedEvent } from '@irie/types';
+import { JAMAICA_TZ, type FeedEvent } from '@lynkkii/types';
 
 // Display helpers shared by web + mobile. All times render in America/Jamaica.
 

@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { addFavorite, listFavoriteIds, removeFavorite } from '@irie/api';
+import { addFavorite, listFavoriteIds, removeFavorite } from '@lynkkii/api';
 import { supabase } from './supabase';
 import { useAuth } from './auth';
 

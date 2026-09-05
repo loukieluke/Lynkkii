@@ -1,22 +1,22 @@
 {
   "expo": {
-    "name": "IrieEvents",
-    "slug": "irieevents",
+    "name": "Lynkkii",
+    "slug": "lynkkii",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "scheme": "irieevents",
+    "scheme": "lynkkii",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.irieevents.app",
+      "bundleIdentifier": "com.lynkkii.app",
       "infoPlist": {
-        "NSLocationWhenInUseUsageDescription": "IrieEvents uses your location to show events happening near you."
+        "NSLocationWhenInUseUsageDescription": "Lynkkii uses your location to show events happening near you."
       }
     },
     "android": {
-      "package": "com.irieevents.app",
+      "package": "com.lynkkii.app",
       "adaptiveIcon": {
         "backgroundColor": "#009B3A",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -34,7 +34,7 @@
       [
         "expo-location",
         {
-          "locationWhenInUsePermission": "IrieEvents uses your location to show events happening near you."
+          "locationWhenInUsePermission": "Lynkkii uses your location to show events happening near you."
         }
       ]
     ],

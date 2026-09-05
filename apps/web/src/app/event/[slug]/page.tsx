@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { getEventBySlug, formatEventDate, formatEventTime, priceBadge } from '@irie/api';
-import { EVENT_TYPE_LABELS, type FeedEvent } from '@irie/types';
+import { getEventBySlug, formatEventDate, formatEventTime, priceBadge } from '@lynkkii/api';
+import { EVENT_TYPE_LABELS, type FeedEvent } from '@lynkkii/types';
 import { ShareButton } from '@/components/ShareButton';
 import { getReadClient } from '@/lib/supabase';
 import { SITE_URL } from '@/lib/env';
@@ -26,9 +26,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const event = await load(slug);
-  if (!event) return { title: 'Event not found · IrieEvents' };
+  if (!event) return { title: 'Event not found · Lynkkii' };
   return {
-    title: `${event.title} · IrieEvents`,
+    title: `${event.title} · Lynkkii`,
     description: event.short_description ?? undefined,
     openGraph: {
       title: event.title,
