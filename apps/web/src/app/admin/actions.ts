@@ -44,19 +44,25 @@ export async function logoutAction() {
   redirect('/admin/login');
 }
 
-async function uploadFlyer(file: File): Promise<string | null> {
-  if (!file || file.size === 0) return null;
+// Flyer files upload directly from the browser to Supabase Storage via this
+// signed URL, never through this server action — a large image sent through
+// a Vercel serverless function (receive + re-upload, in one invocation) can
+// exceed the function's execution time limit and crash with a generic
+// "server-side exception" error instead of a friendly message.
+export async function createFlyerUploadUrl(
+  fileExt: string,
+): Promise<{ path: string; token: string; publicUrl: string } | { error: string }> {
+  if (!(await isAuthed())) return { error: 'Not authenticated' };
   const client = getServiceClient();
-  if (!client) return null;
-  const ext = file.name.split('.').pop()?.toLowerCase() || 'jpg';
+  if (!client) return { error: 'Service role not configured' };
+
+  const ext = fileExt.replace(/[^a-z0-9]/gi, '').toLowerCase() || 'jpg';
   const path = `${crypto.randomUUID()}.${ext}`;
-  const { error } = await client.storage.from('flyers').upload(path, file, {
-    contentType: file.type || 'image/jpeg',
-    upsert: false,
-  });
-  if (error) throw new Error(`Flyer upload failed: ${error.message}`);
-  const { data } = client.storage.from('flyers').getPublicUrl(path);
-  return data.publicUrl;
+  const { data, error } = await client.storage.from('flyers').createSignedUploadUrl(path);
+  if (error) return { error: error.message };
+
+  const { data: pub } = client.storage.from('flyers').getPublicUrl(path);
+  return { path: data.path, token: data.token, publicUrl: pub.publicUrl };
 }
 
 export async function saveVenueAction(formData: FormData) {
@@ -97,16 +103,7 @@ export async function saveEventAction(formData: FormData) {
 
   if (!title || !start) redirect(`${backTo}?error=Title%20and%20start%20time%20are%20required`);
 
-  let flyerUrl = str(formData, 'flyer_url');
-  try {
-    const file = formData.get('flyer_file');
-    if (file instanceof File) {
-      const uploaded = await uploadFlyer(file);
-      if (uploaded) flyerUrl = uploaded;
-    }
-  } catch (e) {
-    redirect(`${backTo}?error=${encodeURIComponent(e instanceof Error ? e.message : 'upload failed')}`);
-  }
+  const flyerUrl = str(formData, 'flyer_url');
 
   const priceType = (str(formData, 'price_type') as PriceType) ?? 'paid';
 

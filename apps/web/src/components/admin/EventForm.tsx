@@ -1,5 +1,9 @@
+'use client';
+
+import { useState } from 'react';
+import { createClient } from '@supabase/supabase-js';
 import { EVENT_TYPES, EVENT_TYPE_LABELS, SOURCE_TYPES, JAMAICA_TZ } from '@lynkkii/types';
-import { saveEventAction } from '@/app/admin/actions';
+import { saveEventAction, createFlyerUploadUrl } from '@/app/admin/actions';
 
 export type EventEditData = {
   id?: string;
@@ -41,6 +45,11 @@ function toLocalInput(iso: string | null | undefined): string {
   return `${g('year')}-${g('month')}-${g('day')}T${g('hour')}:${g('minute')}`;
 }
 
+const supabaseBrowser = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+);
+
 export function EventForm({
   event,
   venues,
@@ -51,8 +60,35 @@ export function EventForm({
   error?: string;
 }) {
   const e = event ?? {};
+  const [flyerUrl, setFlyerUrl] = useState(e.flyer_url ?? '');
+  const [uploadStatus, setUploadStatus] = useState<'idle' | 'uploading' | 'error'>('idle');
+  const [uploadError, setUploadError] = useState<string | null>(null);
+
+  async function handleFlyerFile(file: File | undefined) {
+    if (!file) return;
+    setUploadStatus('uploading');
+    setUploadError(null);
+    const ext = file.name.split('.').pop() || 'jpg';
+    const result = await createFlyerUploadUrl(ext);
+    if ('error' in result) {
+      setUploadStatus('error');
+      setUploadError(result.error);
+      return;
+    }
+    const { error: uploadErr } = await supabaseBrowser.storage
+      .from('flyers')
+      .uploadToSignedUrl(result.path, result.token, file);
+    if (uploadErr) {
+      setUploadStatus('error');
+      setUploadError(uploadErr.message);
+      return;
+    }
+    setFlyerUrl(result.publicUrl);
+    setUploadStatus('idle');
+  }
+
   return (
-    <form className="form" action={saveEventAction} encType="multipart/form-data">
+    <form className="form" action={saveEventAction}>
       {error ? <div className="alert alert--error">{error}</div> : null}
       {e.id ? <input type="hidden" name="id" value={e.id} /> : null}
 
@@ -135,13 +171,25 @@ export function EventForm({
 
       <div className="field">
         <label htmlFor="flyer_file">Flyer image</label>
-        {e.flyer_url ? (
+        {flyerUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={e.flyer_url} alt="current flyer" style={{ width: 140, borderRadius: 10, marginBottom: 6 }} />
+          <img src={flyerUrl} alt="current flyer" style={{ width: 140, borderRadius: 10, marginBottom: 6 }} />
         ) : null}
-        <input id="flyer_file" name="flyer_file" type="file" accept="image/*" />
-        <span className="field__hint">Uploads to Supabase Storage. Or paste a URL below.</span>
-        <input name="flyer_url" placeholder="https://…/flyer.jpg" defaultValue={e.flyer_url ?? ''} />
+        <input
+          id="flyer_file"
+          type="file"
+          accept="image/*"
+          onChange={(ev) => handleFlyerFile(ev.target.files?.[0])}
+        />
+        {uploadStatus === 'uploading' ? <span className="field__hint">Uploading…</span> : null}
+        {uploadStatus === 'error' ? <div className="alert alert--error">{uploadError}</div> : null}
+        <span className="field__hint">Uploads directly to Supabase Storage. Or paste a URL below.</span>
+        <input
+          name="flyer_url"
+          placeholder="https://…/flyer.jpg"
+          value={flyerUrl}
+          onChange={(ev) => setFlyerUrl(ev.target.value)}
+        />
       </div>
 
       <div className="form__row">
@@ -178,8 +226,8 @@ export function EventForm({
       </label>
 
       <div className="form__actions">
-        <button className="btn btn--primary" type="submit">
-          {e.id ? 'Save changes' : 'Create event'}
+        <button className="btn btn--primary" type="submit" disabled={uploadStatus === 'uploading'}>
+          {uploadStatus === 'uploading' ? 'Uploading flyer…' : e.id ? 'Save changes' : 'Create event'}
         </button>
       </div>
     </form>
