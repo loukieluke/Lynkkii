@@ -8,6 +8,24 @@ const nextConfig = {
   reactStrictMode: true,
   // Consume the shared TS packages directly (no pre-build step).
   transpilePackages: ['@lynkkii/api', '@lynkkii/types'],
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.lynkkii.com' }],
+        destination: 'https://lynkkii.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
+  async headers() {
+    return [
+      {
+        source: '/admin/:path*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },

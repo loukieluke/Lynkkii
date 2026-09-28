@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { searchEvents } from '@lynkkii/api';
 import type { FeedEvent } from '@lynkkii/types';
@@ -8,6 +9,19 @@ import { getReadClient } from '@/lib/supabase';
 import { buildQuery, parseFilters, type RawSearchParams } from '@/lib/filters';
 
 export const dynamic = 'force-dynamic';
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<RawSearchParams>;
+}): Promise<Metadata> {
+  const sp = await searchParams;
+  const isFilteredView = Object.keys(sp).length > 0;
+  return {
+    alternates: { canonical: '/' },
+    robots: isFilteredView ? { index: false, follow: true } : undefined,
+  };
+}
 
 export default async function HomePage({
   searchParams,

@@ -26,13 +26,28 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const event = await load(slug);
-  if (!event) return { title: 'Event not found · Lynkkii' };
+  if (!event) return { title: 'Event not found', robots: { index: false } };
+  const path = `/event/${event.slug ?? event.id}`;
+  const where = [event.venue?.name, event.parish].filter(Boolean).join(', ');
+  const description =
+    event.short_description ??
+    `${event.title} — ${formatEventDate(event.start_time)}, ${formatEventTime(event.start_time)}` +
+      `${where ? ` at ${where}` : ''}. Time, location and ticket info on Lynkkii.`;
   return {
-    title: `${event.title} · Lynkkii`,
-    description: event.short_description ?? undefined,
+    title: event.title,
+    description,
+    alternates: { canonical: path },
     openGraph: {
       title: event.title,
-      description: event.short_description ?? undefined,
+      description,
+      url: path,
+      type: 'website',
+      images: event.flyer_url ? [event.flyer_url] : undefined,
+    },
+    twitter: {
+      card: event.flyer_url ? 'summary_large_image' : 'summary',
+      title: event.title,
+      description,
       images: event.flyer_url ? [event.flyer_url] : undefined,
     },
   };
@@ -59,7 +74,18 @@ export default async function EventDetailPage({
     endDate: event.end_time ?? undefined,
     eventStatus: `https://schema.org/Event${event.status === 'cancelled' ? 'Cancelled' : 'Scheduled'}`,
     image: event.flyer_url ? [event.flyer_url] : undefined,
-    description: event.short_description ?? undefined,
+    description: event.short_description ?? event.description ?? undefined,
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    offers:
+      event.price_type === 'free' || event.price_min != null
+        ? {
+            '@type': 'Offer',
+            url: event.ticket_url ?? shareUrl,
+            price: event.price_type === 'free' ? 0 : event.price_min,
+            priceCurrency: event.currency ?? 'JMD',
+            availability: 'https://schema.org/InStock',
+          }
+        : undefined,
     location: v
       ? {
           '@type': 'Place',

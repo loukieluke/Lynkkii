@@ -1,9 +1,16 @@
+import type { Metadata } from 'next';
 import { searchEvents } from '@lynkkii/api';
 import type { FeedEvent } from '@lynkkii/types';
 import { MapView } from '@/components/MapView';
 import { getReadClient } from '@/lib/supabase';
 
 export const dynamic = 'force-dynamic';
+
+export const metadata: Metadata = {
+  title: 'Events map',
+  description: 'Explore upcoming concerts, festivals and events across Jamaica on an interactive map.',
+  alternates: { canonical: '/map' },
+};
 
 export default async function MapPage() {
   const client = getReadClient();

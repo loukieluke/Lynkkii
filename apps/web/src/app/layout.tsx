@@ -1,16 +1,50 @@
 import type { Metadata, Viewport } from 'next';
 import Link from 'next/link';
+import { Analytics } from '@vercel/analytics/next';
+import { SITE_URL } from '@/lib/env';
 import './globals.css';
 
+const DESCRIPTION =
+  'Discover upcoming concerts, festivals, sports, arts, family, and nightlife events across Jamaica. Curated, accurate, and always up to date.';
+
 export const metadata: Metadata = {
-  title: 'Lynkkii — What’s happening in Jamaica',
-  description:
-    'Discover upcoming concerts, festivals, sports, arts, family, and nightlife events across Jamaica. Curated, accurate, and always up to date.',
-  openGraph: {
-    title: 'Lynkkii',
-    description: 'Discover upcoming events across Jamaica.',
-    type: 'website',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'Lynkkii — What’s happening in Jamaica',
+    template: '%s · Lynkkii',
   },
+  description: DESCRIPTION,
+  applicationName: 'Lynkkii',
+  openGraph: {
+    siteName: 'Lynkkii',
+    title: 'Lynkkii — What’s happening in Jamaica',
+    description: DESCRIPTION,
+    type: 'website',
+    locale: 'en_JM',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
+};
+
+const siteJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: 'Lynkkii',
+      description: DESCRIPTION,
+      inLanguage: 'en-JM',
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#organization`,
+      name: 'Lynkkii',
+      url: SITE_URL,
+    },
+  ],
 };
 
 export const viewport: Viewport = {
@@ -21,7 +55,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en-JM">
       <body>
         <header className="site-header">
           <div className="container site-header__row">
@@ -47,6 +81,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             (America/Jamaica).
           </div>
         </footer>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }} />
+        <Analytics />
       </body>
     </html>
   );
