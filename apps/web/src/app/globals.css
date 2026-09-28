@@ -181,6 +181,29 @@ img {
   border-color: var(--ink);
 }
 
+/* Browse links (SEO landing pages) ------------------------------------------*/
+.browse-links {
+  margin: 40px 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.browse-links h2 {
+  font-size: 15px;
+  margin: 20px 0 10px;
+}
+.browse-links h2:first-child {
+  margin-top: 0;
+}
+.browse-links__row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.browse-links__row .chip {
+  cursor: pointer;
+  text-decoration: none;
+}
+
 /* Buttons -------------------------------------------------------------------*/
 .btn {
   display: inline-flex;

@@ -69,6 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/">Discover</Link>
               <Link href="/?price_type=free">Free</Link>
               <Link href="/map">Map</Link>
+              <Link href="/events">Browse</Link>
             </nav>
           </div>
         </header>
