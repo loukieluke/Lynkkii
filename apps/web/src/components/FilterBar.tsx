@@ -86,7 +86,7 @@ export function FilterBar() {
           Paid
         </button>
         <button className="chip" data-active={nearOn} onClick={toggleNear} type="button">
-          📍 Near me
+          Near me
         </button>
 
         <select

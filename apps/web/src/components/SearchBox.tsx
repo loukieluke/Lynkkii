@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { SearchIcon } from './Icons';
 
 export function SearchBox() {
   const router = useRouter();
@@ -23,7 +24,7 @@ export function SearchBox() {
 
   return (
     <form className="searchbox" onSubmit={submit} role="search">
-      <span aria-hidden>🔎</span>
+      <SearchIcon size={18} />
       <input
         type="search"
         placeholder="Search events, artists, venues…"

@@ -1,8 +1,14 @@
 import type { Metadata, Viewport } from 'next';
 import Link from 'next/link';
+import { Anton, Inter, Kaushan_Script } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
+import { TabBar } from '@/components/TabBar';
 import { SITE_URL } from '@/lib/env';
 import './globals.css';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
+const anton = Anton({ subsets: ['latin'], weight: '400', variable: '--font-anton', display: 'swap' });
+const kaushan = Kaushan_Script({ subsets: ['latin'], weight: '400', variable: '--font-kaushan', display: 'swap' });
 
 const DESCRIPTION =
   'Discover upcoming concerts, festivals, sports, arts, family, and nightlife events across Jamaica. Curated, accurate, and always up to date.';
@@ -48,40 +54,44 @@ const siteJsonLd = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#009b3a',
+  themeColor: '#0b0d0c',
   width: 'device-width',
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-JM">
+    <html lang="en-JM" className={`${inter.variable} ${anton.variable} ${kaushan.variable}`}>
       <body>
+        <a href="#main" className="visually-hidden skip-link">
+          Skip to content
+        </a>
         <header className="site-header">
           <div className="container site-header__row">
             <Link href="/" className="brand" aria-label="Lynkkii home">
-              <span className="brand__dot" aria-hidden />
+              <span className="brand__mark" aria-hidden />
               <span>
-                Lynk<em>kii</em>
+                LYNK<em>KII</em>
               </span>
             </Link>
-            <nav className="nav">
+            <nav className="nav" aria-label="Main">
               <Link href="/">Discover</Link>
-              <Link href="/?price_type=free">Free</Link>
-              <Link href="/map">Map</Link>
               <Link href="/events">Browse</Link>
+              <Link href="/events/free">Free</Link>
+              <Link href="/map">Map</Link>
             </nav>
           </div>
         </header>
 
-        <main>{children}</main>
+        <main id="main">{children}</main>
 
         <footer className="site-footer">
-          <div className="container">
-            Lynkkii · Curated Jamaican events · Times shown in Jamaica time
-            (America/Jamaica).
+          <div className="container site-footer__row">
+            <span>Lynkkii · Curated Jamaican events · Times shown in Jamaica time</span>
+            <span className="site-footer__tagline">Same island, more vibes</span>
           </div>
         </footer>
+        <TabBar />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }} />
         <Analytics />
       </body>
